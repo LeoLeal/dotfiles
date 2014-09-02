@@ -50,4 +50,4 @@ alias server="python -m SimpleHTTPServer 8000"
 alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update --system; sudo gem update"
 
 # Update dotfiles
-alias redot="curl -Ls https://raw.github.com/thiagoneves/dotfiles/master/install.bash | bash"
+alias redot="curl -Ls https://raw.github.com/LeoLeal/dotfiles/master/install.bash | bash"

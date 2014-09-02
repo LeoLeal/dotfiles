@@ -8,7 +8,7 @@ unzip_available=$(command -v unzip)
 
 dotfiles_zip=/tmp/dotfiles-master.zip
 dotfiles_dir=/tmp/dotfiles-master
-dotfiles_url=https://github.com/thiagoneves/dotfiles/archive/master.zip
+dotfiles_url=https://github.com/LeoLeal/dotfiles/archive/master.zip
 user_file="/tmp/user_${RANDOM}.sh"
 
 if [[ "$unzip_available" = "" ]]; then

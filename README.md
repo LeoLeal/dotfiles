@@ -6,8 +6,8 @@ To install it, just execute the following command:
 
 ```bash
 # If you have curl installed
-curl -Ls https://raw.github.com/thiagoneves/dotfiles/master/install.bash | bash
+curl -Ls https://raw.github.com/LeoLeal/dotfiles/master/install.bash | bash
 
 # If you have wget installed
-wget -q -O - https://raw.github.com/thiagoneves/dotfiles/master/install.bash | bash
+wget -q -O - https://raw.github.com/LeoLeal/dotfiles/master/install.bash | bash
 ```

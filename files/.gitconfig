@@ -75,7 +75,7 @@
   autosetuprebase = always
 
 [push]
-  default = current
+  default = simple
 
 [core]
   excludesfile = ~/.gitignore

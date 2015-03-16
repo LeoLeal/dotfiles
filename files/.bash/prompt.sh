@@ -3,6 +3,7 @@ __prompt () {
   history -c
   history -r
 
+  local BOLD="\[\e[1m\]"
   local BLUE="\[\033[0;34m\]"
   local NO_COLOR="\[\e[0m\]"
   local GRAY="\[\033[1;30m\]"
@@ -25,11 +26,8 @@ __prompt () {
     BRANCH=" $BRANCH"
   fi
 
-  local RUBY_VERSION=`ruby -e "puts RUBY_VERSION"`
-
-  if [ -f Gemfile.lock ]; then
-    local RAILS_VERSION=`cat Gemfile.lock | grep -E " +rails \([0-9]+" | sed 's/ *rails (\(.*\))/\1/'`
-  fi
+  local LOCALIP=`localip 2> /dev/null`
+  local ROUTERIP=`ip 2> /dev/null`
 
   local RUBY_PROMPT=""
   local STATUS=`git status 2> /dev/null | tr "\\n" " "`
@@ -45,11 +43,14 @@ __prompt () {
   local CHANGES_NOT_STAGED="Changes not staged for commit"
   local LOG=`git log -1 2> /dev/null`
 
-  if [[ "$RAILS_VERSION" ]]; then
-    local RAILS_PROMPT="${RAILS_VERSION}#"
-  fi
+  RUBY_PROMPT="${BOLD}${GRAY}[${USER}${LIGHT_GRAY}${BOLD}⚡localhost${GRAY}${BOLD}]${NO_COLOR} "
 
-  RUBY_PROMPT="${GRAY}[${USER}|${RAILS_PROMPT}${RUBY_VERSION}]${NO_COLOR} "
+  if [ "$LOCALIP" != "" ]; then
+  	if [ "$ROUTERIP" != "" ]; then
+  		LOCALIP="${LOCALIP}${LIGHT_GRAY}${BOLD}(${ROUTERIP})${GRAY}${BOLD}"
+  	fi
+  RUBY_PROMPT="${BOLD}${GRAY}[${USER}${GREEN}${BOLD}⚡${LOCALIP}]${NO_COLOR} "
+  fi
 
   if [ "$STATUS" != "" ]; then
     if [[ "$STATUS" =~ "$CHANGES_NOT_STAGED" ]]; then

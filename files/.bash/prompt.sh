@@ -14,6 +14,7 @@ __prompt () {
   local RED="\[\033[0;31m\]"
   local WHITE="\[\033[1;37m\]"
   local YELLOW="\[\033[0;33m\]"
+  local ORANGE="\[\033[38;5;208m\]"
 
   local BASE_COLOR="$NO_COLOR"
   local BRANCH=`git branch 2> /dev/null | grep \* | sed 's/* //'`
@@ -28,6 +29,7 @@ __prompt () {
 
   local LOCALIP=`localip 2> /dev/null`
   local ROUTERIP=`ip 2> /dev/null`
+  local IPCOLOR=${ORANGE}
 
   local RUBY_PROMPT=""
   local STATUS=`git status 2> /dev/null | tr "\\n" " "`
@@ -47,9 +49,10 @@ __prompt () {
 
   if [ "$LOCALIP" != "" ]; then
   	if [ "$ROUTERIP" != "" ]; then
+  		IPCOLOR=${GREEN}
   		LOCALIP="${LOCALIP}${LIGHT_GRAY}${BOLD}(${ROUTERIP})${GRAY}${BOLD}"
   	fi
-  RUBY_PROMPT="${BOLD}${GRAY}[${USER}${GREEN}${BOLD}⚡${LOCALIP}]${NO_COLOR} "
+  RUBY_PROMPT="${BOLD}${GRAY}[${USER}${IPCOLOR}${BOLD}⚡${LOCALIP}]${NO_COLOR} "
   fi
 
   if [ "$STATUS" != "" ]; then
